@@ -15,10 +15,13 @@
 
   <ItemGroup>
     <Compile Remove="UnitTest1.cs" />
+    <Compile Remove="Services\APIErrorHandling_UnitTest.cs" />
+    <Compile Remove="Services\GithubService_UnitTest.cs" />
+    <Compile Remove="Services\RestService_UnitTest.cs" />
+    <Compile Remove="Services\TraceLogListner_UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\GithubRepoExample\GithubRepoExample.csproj" />

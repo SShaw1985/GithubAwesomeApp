@@ -74,8 +74,13 @@ namespace GithubRepoExample.ViewModels
                 ErrorMessage = string.Empty;
                 if (MasterPRItems.Count >= 999)
                 {
-                    ShowLoadMore = true;
+                    ShowLoadMore = false;
                 }
+                else
+                { 
+                    ShowLoadMore = true; 
+                }
+
             }
             finally
             {
@@ -89,11 +94,22 @@ namespace GithubRepoExample.ViewModels
             {
                 var parameters = new NavigationParameters();
                 parameters.Add("PRID", obj.ToString());
-                var name = PRItems.Where(x => x.Id.ToString() == obj.ToString()).Select(x => x.Name).FirstOrDefault();
-                parameters.Add("RepoName",name);
+                if (PRItems != null)
+                {
+                    var name = PRItems.Where(x => x.Id.ToString() == obj.ToString()).Select(x => x.Name).FirstOrDefault();
+                    parameters.Add("RepoName", name);
+                }
+
                 if (_navigationService != null)
                 {
-                    await _navigationService.NavigateAsync($"{nameof(ItemDetailsPage)}", parameters);
+                    try
+                    {
+                        await _navigationService.NavigateAsync($"{nameof(ItemDetailsPage)}", parameters);
+                    }
+                    catch (Exception ex)
+                    {
+                        string sss = ex.Message;
+                    }
                 }
             }
             else

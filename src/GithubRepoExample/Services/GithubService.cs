@@ -90,10 +90,7 @@ namespace GithubRepoExample.Services
                 retVal = JsonConvert.DeserializeObject<List<Models.Repository>>(json);
             }
 
-            if(paging==10)
-            {
-                return retVal;
-            }
+           
 
             return retVal;
         }

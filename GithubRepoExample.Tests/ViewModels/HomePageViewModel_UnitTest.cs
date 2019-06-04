@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using GithubRepoExample.Interfaces;
 using GithubRepoExample.ViewModels;
 using Moq;
+using Octokit;
 using Prism.Navigation;
 using Prism.Services;
 using Xunit;
@@ -28,37 +31,21 @@ namespace GithubRepoExample.Tests.ViewModels
             mockRepository = new MockRepository(MockBehavior.Loose);
         }
 
-        [Fact]
-        public void TestOnNavigated()
-        {
-            SetUpDefault();
-
-            GithubService.Setup(c => c.GetRepositories()).Returns(() => { return Task.Run(() => { return new Models.PullRequests(){ items = new System.Collections.Generic.List<Models.PRStub>()}; }); });
-
-            SetUpModel();
-
-            var param = new NavigationParameters();
-
-            viewModelUnderTest.OnNavigatedTo(param);
-
-            Assert.True(viewModelUnderTest.PRItems != null);
-        }
-
 
         [Fact]
         public void TestPageHasTitle()
         {
             SetUpDefault();
 
-            GithubService.Setup(c => c.GetRepositories()).Returns(() => { return Task.Run(() => { return new Models.PullRequests(); }); });
-
+            GithubService.Setup(c => c.GetRepositories(It.IsAny<int>())).Returns(() => { return Task.Run(() => { return new List<Models.Repository>(); }); });
+            var userDialogsMock = mockRepository.Create<IUserDialogs>();
+            UserDialogs.Instance = userDialogsMock.Object;
             SetUpModel();
 
             var param = new NavigationParameters();
 
-            viewModelUnderTest.OnNavigatedTo(param);
 
-            Assert.True(!string.IsNullOrEmpty(viewModelUnderTest.Title) && viewModelUnderTest.Title== "Home Page");
+            Assert.True(!string.IsNullOrEmpty(viewModelUnderTest.Title) && viewModelUnderTest.Title== "Github Awesome");
         }
 
         [Fact]
@@ -67,9 +54,6 @@ namespace GithubRepoExample.Tests.ViewModels
             SetUpDefault();
 
             Navigation.Setup(c => c.NavigateAsync(It.IsAny<string>(), It.IsAny<NavigationParameters>())).Verifiable();
-            Navigation.Setup(c => c.NavigateAsync(It.IsAny<string>())).Verifiable();
-            Navigation.Setup(c => c.NavigateAsync(It.IsAny<Uri>())).Verifiable();
-            Navigation.Setup(c => c.NavigateAsync(It.IsAny<Uri>(), It.IsAny<NavigationParameters>())).Verifiable();
 
             SetUpModel();
 

@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using GithubRepoExample.Interfaces;
 using GithubRepoExample.ViewModels;
 using Moq;
+using Octokit;
 using Prism.Navigation;
 using Prism.Services;
 using Xunit;
@@ -24,25 +28,11 @@ namespace GithubRepoExample.Tests.ViewModels
 
         public Mock<IGithubService> GithubService { get; set; }
 
+        public IReadOnlyList<PullRequest> Values { get; set; }
+
         public ItemDetailsViewModel_UnitTest()
         {
             mockRepository = new MockRepository(MockBehavior.Loose);
-        }
-
-        [Fact]
-        public void TestValidID()
-        {
-            SetUpDefault();
-
-            GithubService.Setup(c => c.GetRepository(It.IsAny<int>())).Returns(() => { return null; }).Verifiable();
-
-            SetUpModel();
-
-            var param = new NavigationParameters();
-            param.Add("PRID", 11000);
-            viewModelUnderTest.OnNavigatedTo(param);
-
-            Assert.True(viewModelUnderTest.PullRequest==null);
         }
 
         [Fact]
@@ -50,15 +40,27 @@ namespace GithubRepoExample.Tests.ViewModels
         {
             SetUpDefault();
 
-            GithubService.Setup(c => c.GetRepository(It.IsAny<int>())).Returns(() => { return Task.Run(() => { return new Models.PRStub(); }); });
-
+            GithubService.Setup(c => c.GetRepository(It.IsAny<int>())).Returns(Task.Run(()=>
+            {
+                Values = new List<PullRequest>();
+                return Values;
+            }));
+            var userDialogsMock = mockRepository.Create<IUserDialogs>();
+            UserDialogs.Instance = userDialogsMock.Object;
             SetUpModel();
 
             var param = new NavigationParameters();
             param.Add("PRID", 11000);
             viewModelUnderTest.OnNavigatedTo(param);
 
-            Assert.True(viewModelUnderTest.PullRequest != null);
+            Assert.True(viewModelUnderTest.MasterPullRequests==null);
+        }
+
+        private IReadOnlyList<PullRequest> GenerateList()
+        {
+            var retVal = new List<PullRequest>();
+            retVal.Add(new PullRequest());
+            return retVal;
         }
 
         void InitialiseMocks()
@@ -77,6 +79,23 @@ namespace GithubRepoExample.Tests.ViewModels
         private void SetUpModel()
         {
             viewModelUnderTest = new ItemDetailsViewModel(Navigation.Object, PageDialog.Object, DeviceSettings.Object, GithubService.Object);
+        }
+    }
+
+    public class ReadOnlyList<PullRequest> : IReadOnlyList<PullRequest>
+    {
+        public PullRequest this[int index] => throw new NotImplementedException();
+
+        public int Count => throw new NotImplementedException();
+
+        public IEnumerator<PullRequest> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

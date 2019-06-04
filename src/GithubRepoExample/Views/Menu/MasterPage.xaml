@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" 
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:nav="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+                  xmlns:local="clr-namespace:GithubRepoExample.Views;assembly=GithubRepoExample"
+                  x:Class="GithubRepoExample.Views.MasterPage">
+  <MasterDetailPage.Master>
+        <ContentPage Title="Default" Icon="hamburger.png" BackgroundColor="Gray">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="15,50,0,0">
+                
+                
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal" Spacing="10" HeightRequest="50">
+                    <Image Source="home.png" HeightRequest="40" VerticalOptions="Center" WidthRequest="18"/>
+                    <Label Text="Home" FontSize="Medium" VerticalOptions="Center" TextColor="White" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped"  Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPage/AppHome" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="1" BackgroundColor="White"/>
+                
+                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Start" Orientation="Horizontal" Spacing="10" HeightRequest="50">
+                    <Image Source="search.png" HeightRequest="40" VerticalOptions="Center" WidthRequest="18"/>
+                    <Label Text="Search" FontSize="Medium" VerticalOptions="Center" TextColor="White" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Handle_Tapped"  Command="{Binding NavigateCommand}" CommandParameter="BaseNavigationPage/HomePage" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+                <BoxView HorizontalOptions="FillAndExpand" VerticalOptions="Start" HeightRequest="1" BackgroundColor="White"/>
+                
+            </StackLayout>
+        </ContentPage>
+  </MasterDetailPage.Master>
+</MasterDetailPage>

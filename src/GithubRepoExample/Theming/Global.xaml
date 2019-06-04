@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="GithubRepoExample.Theming.Global">
+
+    <ResourceDictionary Source="ColorPalette.xaml" />
+  
+      
+    <Style TargetType="NavigationPage" ApplyToDerivedTypes="true">
+        <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
+        <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+    </Style>
+    <Style TargetType="TabbedPage" ApplyToDerivedTypes="true">
+        <Setter Property="BarTextColor" Value="{StaticResource NavigationText}" />
+        <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+    </Style>
+    
+    <Style x:Key="GoldTitle" TargetType="Label" >
+        <Setter Property="TextColor" Value="#DF9305"/>
+        <Setter Property="FontSize" Value="Medium" />
+    </Style>
+    <Style x:Key="MainTitle" TargetType="Label" >
+        <Setter Property="TextColor" Value="#7B9DD8"/>
+        <Setter Property="FontSize" Value="Medium" />
+    </Style>
+    <Style x:Key="DefaultText" TargetType="Label" >
+        <Setter Property="TextColor" Value="#CACACA"/>
+        <Setter Property="FontSize" Value="Small" />
+        
+    </Style>
+    
+</ResourceDictionary>

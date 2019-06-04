@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="GithubRepoExample.Views.ItemDetailsPage"
+             xmlns:Converters="clr-namespace:GithubRepoExample.Converters;assembly=GithubRepoExample"   
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Name="ItemsPageName" Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Converters:DateToStringConverter x:Key="dateToStringConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Padding="0,0,0,0" Spacing="0">
+            <StackLayout Orientation="Horizontal"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F0F0F0" HeightRequest="20" Padding="5,15,5,15" Spacing="0">
+               
+                <Label Text="{Binding OpenLabel}" Style="{StaticResource GoldTitle}" FontSize="Micro"/>
+                <Label Text="{Binding ClosedLabel}" TextColor="Black" FontSize="Micro"/>
+                
+            </StackLayout>
+            <StackLayout Padding="15,25,15,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                
+                <ListView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CachingStrategy="RecycleElement" RowHeight="100" ItemsSource="{Binding PullRequests}" ItemTapped="Handle_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Label Text="{Binding Title}"
+                                           Style="{StaticResource MainTitle}"
+                                           LineBreakMode="TailTruncation"/>
+                                    
+                                    <Label Text="{Binding Body}" 
+                                           Style="{StaticResource DefaultText}"
+                                           LineBreakMode="TailTruncation" />
+                                    
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                        <ffimageloading:CachedImage Source="{Binding User.AvatarUrl}" HorizontalOptions="Start" WidthRequest="40"></ffimageloading:CachedImage>
+                                        <StackLayout HorizontalOptions="FillAndExpand">
+                                            <Label Text="{Binding User.Login}"
+                                                   Style="{StaticResource MainTitle}" 
+                                                   FontSize="Micro"/>
+                                            <Label Text="{Binding CreatedAt, Converter={StaticResource dateToStringConverter}}"
+                                                   Style="{StaticResource DefaultText}"
+                                                   FontSize="Micro"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToItemCommand, Source={x:Reference Name=ItemsPageName}}" CommandParameter="{Binding HtmlUrl}"/>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.FooterTemplate>  
+                        <DataTemplate>  
+                            <Grid>  
+                                <Button Text="Load More" Command="{Binding LoadMoreCommand}" />
+                            </Grid>  
+                        </DataTemplate>  
+                    </ListView.FooterTemplate>  
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

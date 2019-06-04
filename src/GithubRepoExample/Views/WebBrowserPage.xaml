@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="GithubRepoExample.Views.WebBrowserPage">
+    <ContentPage.Content>
+        <WebView HeightRequest="{Binding DeviceHeight}" WidthRequest="{Binding DeviceWidth}" Source="{Binding WebSource}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></WebView>
+    </ContentPage.Content>
+</ContentPage>

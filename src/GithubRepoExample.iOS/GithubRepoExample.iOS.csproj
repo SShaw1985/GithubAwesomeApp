@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D3A3EFC-0A12-4E41-BEC9-F8241BF5B99A}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GithubRepoExample.iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>GithubRepoExample.iOS</AssemblyName>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <BuildIpa>True</BuildIpa>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchArch>ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <BuildIpa>True</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchUseLlvm>true</MtouchUseLlvm>
+    <MtouchLink>Full</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mock|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Mock</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;MOCK;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mock|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Mock</OutputPath>
+    <DefineConstants>__UNIFIED__;__MOBILE__;__IOS__;DEBUG;ENABLE_TEST_CLOUD;MOCK;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARM64</MtouchArch>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="iOSInitializer.cs" />
+    <None Include="Entitlements.plist" />
+    <None Include="Info.plist" />
+    <None Include="FodyWeavers.xml" />
+    <LinkDescription Include="LinkerSettings.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </LinkDescription>
+    <Compile Include="CustomRenderers\CustomSearchBarRenderer.cs" />
+    <Compile Include="BlobCacheInstanceHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\AppIcon@1x.png" />
+    <BundleResource Include="Resources\AppIcon@2x.png" />
+    <BundleResource Include="Resources\AppIcon@3x.png" />
+    <BundleResource Include="Resources\hamburger.png" />
+    <BundleResource Include="Resources\hamburger@2x.png" />
+    <BundleResource Include="Resources\home.png" />
+    <BundleResource Include="Resources\fork.png" />
+    <BundleResource Include="Resources\splash.png" />
+    <BundleResource Include="Resources\star.png" />
+    <BundleResource Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\iTunesArtwork@1x.png" />
+    <ITunesArtwork Include="Resources\iTunesArtwork@2x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-20x20@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-29x29@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-40x40@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-57x57@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-60x60@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-72x72@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-76x76@3x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-App-83.5x83.5@2x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-50x50@1x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-50x50@2x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage-1125%403x~iphoneX-portrait_1125x2436.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage-2436%403x~iphoneX-landscape_2436x1125.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage-1242%403x~iphone6s-portrait_1242x2208.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage-750%402x~iphone6-portrait_750x1334.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage-1242%403x~iphone6s-landscape_2208x1242.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage~iphone_640x960.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage-568h%402x~iphone_640x1136.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage~iphone-320x480.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="PropertyChanged.Fody" Version="2.5.13" PrivateAssets="all" />
+    <PackageReference Include="Prism.DryIoc.Forms" Version="7.1.0.431" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+    <PackageReference Include="Xamarin.Essentials" Version="0.11.0-preview" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.3.840" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.3.840" />
+    <PackageReference Include="Mobile.BuildTools" Version="1.4.0.638" PrivateAssets="all" />
+    <PackageReference Include="Prism.QuickStart.MFractor.Config" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.0.4</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GithubRepoExample\GithubRepoExample.csproj">
+      <Project>{D348B62C-D830-4249-B40A-A1457FDCBB92}</Project>
+      <Name>GithubRepoExample</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GithubRepoExample\GithubRepoExample.csproj">
+      <Project>{D348B62C-D830-4249-B40A-A1457FDCBB92}</Project>
+      <Name>GithubRepoExample</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomRenderers\" />
+  </ItemGroup>
+  <Import Project="$(MobileBuildToolsTargets)" Condition="Exists('$(MobileBuildToolsTargets)')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

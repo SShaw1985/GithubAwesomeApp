@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"    
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Class="GithubRepoExample.Views.HomePage"
+    Title="{Binding Title}"
+    x:Name="HomePageName">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White" Padding="0,0,0,0" Spacing="0">
+            <StackLayout  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="#F0F0F0" HeightRequest="20" Padding="5,15,5,15">
+                <SearchBar HorizontalOptions="FillAndExpand" TextChanged="Handle_TextChanged" Text="{Binding SearchTerm}" />
+            </StackLayout>
+            <StackLayout Padding="15,25,15,15" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ListView x:Name="listView"   ios:ListView.SeparatorStyle="FullWidth"  CachingStrategy="RecycleElement" ItemTapped="Handle_ItemTapped" ItemsSource="{Binding PRItems}" RowHeight="125" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="0,5,0,5">
+                                    <Grid.RowDefinitions >
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="70*"/>
+                                        <ColumnDefinition Width="30*"/>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                      <Label Text="{Binding Name}" 
+                                             HorizontalOptions="FillAndExpand"
+                                             Style="{StaticResource MainTitle}"/>
+                                        
+                                        <Label Text="{Binding Description}" 
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="FillAndExpand" 
+                                               Style="{StaticResource DefaultText}"
+                                               HeightRequest="40"
+                                               LineBreakMode="TailTruncation"/>
+                                        
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                              <ffimageloading:CachedImage Source="fork"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Start"
+                                               WidthRequest="25"/>
+                                            
+                                               <Label 
+                                                Text="{Binding ForksCount}" 
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Start" 
+                                                Style="{StaticResource GoldTitle}"/> 
+                                           
+                                               <BoxView BackgroundColor="White" WidthRequest="15"/>
+                                            
+                                               <ffimageloading:CachedImage 
+                                                   Source="star" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"
+                                                   WidthRequest="25"/>
+                                            
+                                               <Label 
+                                                   Text="{Binding StargazersCount}" 
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="Start"
+                                                   Style="{StaticResource GoldTitle}"/> 
+                                            
+                                        </StackLayout>
+                                    </StackLayout>
+                                    
+                                    <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                        <ffimageloading:CachedImage Source="{Binding Owner.AvatarUrl}"
+                                               HeightRequest="40"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"/>
+                                        <Label Text="{Binding Name}" 
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               Style="{StaticResource MainTitle}"
+                                               FontSize="Micro"/>
+                                        <Label Text="{Binding Owner.Login}" 
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="Center"
+                                               Style="{StaticResource DefaultText}"
+                                               FontSize="Micro"/>
+                                    </StackLayout>
+                                    
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer   Command="{Binding BindingContext.GoToItemCommand, Source={x:Reference Name=HomePageName}}" CommandParameter="{Binding Id}"/>
+                                    </Grid.GestureRecognizers>
+                                </Grid>
+                                    
+                               
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                         <StackLayout IsVisible="{Binding ShowLoadMore}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="40" Padding="15,15,15,15">
+                                
+                                <Button Text="Load More" HorizontalOptions="FillAndExpand" BackgroundColor="#F0F0F0" Command="{Binding LoadMoreCommand}" />
+                                
+                            </StackLayout>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+                     
+    </ContentPage.Content>
+</ContentPage>
